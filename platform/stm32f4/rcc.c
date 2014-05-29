@@ -80,9 +80,11 @@ void sys_clock_init(void)
 
 		/* Configure the main PLL */
 		/* PLL Options - See RM0090 Reference Manual pg. 95 */
+#if 0
 		*RCC_PLLCFGR = PLL_M | (PLL_N << 6) |
 		               (((PLL_P >> 1) - 1) << 16) |
 		               (RCC_PLLCFGR_PLLSRC_HSE) | (PLL_Q << 24);
+#endif
 
 		/* Enable the main PLL */
 
@@ -117,7 +119,9 @@ void sys_clock_init(void)
 	}
 
 	/* Enable the CCM RAM clock */
+#if 0
 	*RCC_AHB1ENR |= (1 << 20);
+#endif
 
 	/* Enable Bus and Usage Faults */
 	*SCB_SHCSR |= SCB_SHCSR_BUSFAULTENA;

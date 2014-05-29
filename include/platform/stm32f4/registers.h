@@ -52,28 +52,28 @@
 #define DAC_BASE              (APB1PERIPH_BASE + 0x7400)
 
 /* APB2 peripherals */
-#define TIM1_BASE             (APB2PERIPH_BASE + 0x0000)
-#define TIM8_BASE             (APB2PERIPH_BASE + 0x0400)
-#define USART1_BASE           (APB2PERIPH_BASE + 0x1000)
-#define USART6_BASE           (APB2PERIPH_BASE + 0x1400)
-#define ADC1_BASE             (APB2PERIPH_BASE + 0x2000)
-#define ADC2_BASE             (APB2PERIPH_BASE + 0x2100)
-#define ADC3_BASE             (APB2PERIPH_BASE + 0x2200)
-#define ADC_BASE              (APB2PERIPH_BASE + 0x2300)
-#define SDIO_BASE             (APB2PERIPH_BASE + 0x2C00)
+#define TIM1_BASE             (APB2PERIPH_BASE + 0x2C00)
+#define TIM8_BASE             (APB2PERIPH_BASE + 0x3400)
+#define USART1_BASE           (APB2PERIPH_BASE + 0x3800)
+//#define USART6_BASE           (APB2PERIPH_BASE + 0x1400)
+#define ADC1_BASE             (APB2PERIPH_BASE + 0x2400)
+#define ADC2_BASE             (APB2PERIPH_BASE + 0x2800)
+#define ADC3_BASE             (APB2PERIPH_BASE + 0x3C00)
+//#define ADC_BASE              (APB2PERIPH_BASE + 0x2300)
+#define SDIO_BASE             (APB2PERIPH_BASE + 0x8000)
 #define SPI1_BASE             (APB2PERIPH_BASE + 0x3000)
-#define SYSCFG_BASE           (APB2PERIPH_BASE + 0x3800)
-#define EXTI_BASE             (APB2PERIPH_BASE + 0x3C00)
-#define TIM9_BASE             (APB2PERIPH_BASE + 0x4000)
-#define TIM10_BASE            (APB2PERIPH_BASE + 0x4400)
-#define TIM11_BASE            (APB2PERIPH_BASE + 0x4800)
+#define SYSCFG_BASE           (APB2PERIPH_BASE + 0x3800) /* not in STM32F103 */
+#define EXTI_BASE             (APB2PERIPH_BASE + 0x0400)
+#define TIM9_BASE             (APB2PERIPH_BASE + 0x4C00)
+#define TIM10_BASE            (APB2PERIPH_BASE + 0x5000)
+#define TIM11_BASE            (APB2PERIPH_BASE + 0x5400)
 
 /* AHB */
-#define GPIO_BASE(port)                 (AHB1PERIPH_BASE + (0x400*port))                        /* GPIO Port base address */
-#define RCC_BASE                        (AHB1PERIPH_BASE + 0x3800)                              /* Reset and Clock Control base address */
-#define FLASH_R_BASE                    (AHB1PERIPH_BASE + 0x3C00)                              /* Flash registers base address */
-#define DMA1_BASE                       (AHB1PERIPH_BASE + 0x6000)                              /* DMA1 base address */
-#define DMA2_BASE                       (AHB1PERIPH_BASE + 0x6400)                              /* DMA2 base address */
+#define GPIO_BASE(port)                 (APB2PERIPH_BASE + 0x0800 + (0x400*port))                        /* GPIO Port base address */
+#define RCC_BASE                        (AHB1PERIPH_BASE + 0x1000)                              /* Reset and Clock Control base address */
+#define FLASH_R_BASE                    (AHB1PERIPH_BASE + 0x2000)                              /* Flash registers base address */
+#define DMA1_BASE                       (AHB1PERIPH_BASE + 0x0000)                              /* DMA1 base address */
+#define DMA2_BASE                       (AHB1PERIPH_BASE + 0x0400)                              /* DMA2 base address */
 #define USB_FS_BASE                     (AHB2PERIPH_BASE + 0x0000)                              /* USB OTG FS base address */
 
 
@@ -166,14 +166,14 @@
 
 /* Reset and Clock Control (RCC) */
 #define RCC_CR                          (volatile uint32_t *) (RCC_BASE + 0x00)                 /* Clock Control Register */
-#define RCC_PLLCFGR                     (volatile uint32_t *) (RCC_BASE + 0x04)                 /* PLL Configuration Register */
-#define RCC_CFGR                        (volatile uint32_t *) (RCC_BASE + 0x08)                 /* Clock Configuration Register */
-#define RCC_CIR                         (volatile uint32_t *) (RCC_BASE + 0x0C)                 /* Clock Interrupt Register */
-#define RCC_AHB1RSTR                    (volatile uint32_t *) (RCC_BASE + 0x10)                 /* AHB1 reset Register */
-#define RCC_AHB1ENR                     (volatile uint32_t *) (RCC_BASE + 0x30)                 /* AHB1 Enable Register */
+#define RCC_PLLCFGR                     (volatile uint32_t *) (RCC_BASE + 0x04)                 /* PLL Configuration Register */ /* not exist */
+#define RCC_CFGR                        (volatile uint32_t *) (RCC_BASE + 0x04)                 /* Clock Configuration Register */
+#define RCC_CIR                         (volatile uint32_t *) (RCC_BASE + 0x08)                 /* Clock Interrupt Register */
+#define RCC_AHB1RSTR                    (volatile uint32_t *) (RCC_BASE + 0x28)                 /* AHB1 reset Register */
+#define RCC_AHB1ENR                     (volatile uint32_t *) (RCC_BASE + 0x14)                 /* AHB1 Enable Register */
 #define RCC_AHB2ENR                     (volatile uint32_t *) (RCC_BASE + 0x34)                 /* AHB2 Enable Register */
-#define RCC_APB1ENR                     (volatile uint32_t *) (RCC_BASE + 0x40)                 /* APB1 Peripheral Clock Enable Register */
-#define RCC_APB2ENR                     (volatile uint32_t *) (RCC_BASE + 0x44)                 /* APB2 Peripheral Clock Enable Register */
+#define RCC_APB1ENR                     (volatile uint32_t *) (RCC_BASE + 0x1C)                 /* APB1 Peripheral Clock Enable Register */
+#define RCC_APB2ENR                     (volatile uint32_t *) (RCC_BASE + 0x18)                 /* APB2 Peripheral Clock Enable Register */
 
 /* SYSCFG */
 #define SYSCFG_MEMRMP					(volatile uint32_t *)(SYSCFG_BASE + 0x0)				/* Memory remap register */
@@ -351,18 +351,18 @@
 #define RCC_CFGR_HPRE_DIV128            (uint32_t) (0xD << 4)                                   /* AHB prescaler - SYSCLK/128 */
 #define RCC_CFGR_HPRE_DIV256            (uint32_t) (0xE << 4)                                   /* AHB prescaler - SYSCLK/256 */
 #define RCC_CFGR_HPRE_DIV512            (uint32_t) (0xF << 4)                                   /* AHB prescaler - SYSCLK/512 */
-#define RCC_CFGR_PPRE1_M                (uint32_t) (7 << 10)                                    /* APB low speed prescaler mask */
-#define RCC_CFGR_PPRE1_DIV1             (uint32_t) (0 << 10)                                    /* APB low speed prescaler - HCLK/1 */
-#define RCC_CFGR_PPRE1_DIV2             (uint32_t) (4 << 10)                                    /* APB low speed prescaler - HCLK/2 */
-#define RCC_CFGR_PPRE1_DIV4             (uint32_t) (5 << 10)                                    /* APB low speed prescaler - HCLK/4 */
-#define RCC_CFGR_PPRE1_DIV8             (uint32_t) (6 << 10)                                    /* APB low speed prescaler - HCLK/8 */
-#define RCC_CFGR_PPRE1_DIV16            (uint32_t) (7 << 10)                                    /* APB low speed prescaler - HCLK/16 */
-#define RCC_CFGR_PPRE2_M                (uint32_t) (7 << 13)                                    /* APB high speec prescaler mask */
-#define RCC_CFGR_PPRE2_DIV1             (uint32_t) (0 << 13)                                    /* APB high speed prescaler - HCLK/1 */
-#define RCC_CFGR_PPRE2_DIV2             (uint32_t) (4 << 13)                                    /* APB high speed prescaler - HCLK/2 */
-#define RCC_CFGR_PPRE2_DIV4             (uint32_t) (5 << 13)                                    /* APB high speed prescaler - HCLK/4 */
-#define RCC_CFGR_PPRE2_DIV8             (uint32_t) (6 << 13)                                    /* APB high speed prescaler - HCLK/8 */
-#define RCC_CFGR_PPRE2_DIV16            (uint32_t) (7 << 13)                                    /* APB high speed prescaler - HCLK/16 */
+#define RCC_CFGR_PPRE1_M                (uint32_t) (7 << 8)                                    /* APB low speed prescaler mask */
+#define RCC_CFGR_PPRE1_DIV1             (uint32_t) (0 << 8)                                    /* APB low speed prescaler - HCLK/1 */
+#define RCC_CFGR_PPRE1_DIV2             (uint32_t) (4 << 8)                                    /* APB low speed prescaler - HCLK/2 */
+#define RCC_CFGR_PPRE1_DIV4             (uint32_t) (5 << 8)                                    /* APB low speed prescaler - HCLK/4 */
+#define RCC_CFGR_PPRE1_DIV8             (uint32_t) (6 << 8)                                    /* APB low speed prescaler - HCLK/8 */
+#define RCC_CFGR_PPRE1_DIV16            (uint32_t) (7 << 8)                                    /* APB low speed prescaler - HCLK/16 */
+#define RCC_CFGR_PPRE2_M                (uint32_t) (7 << 11)                                    /* APB high speec prescaler mask */
+#define RCC_CFGR_PPRE2_DIV1             (uint32_t) (0 << 11)                                    /* APB high speed prescaler - HCLK/1 */
+#define RCC_CFGR_PPRE2_DIV2             (uint32_t) (4 << 11)                                    /* APB high speed prescaler - HCLK/2 */
+#define RCC_CFGR_PPRE2_DIV4             (uint32_t) (5 << 11)                                    /* APB high speed prescaler - HCLK/4 */
+#define RCC_CFGR_PPRE2_DIV8             (uint32_t) (6 << 11)                                    /* APB high speed prescaler - HCLK/8 */
+#define RCC_CFGR_PPRE2_DIV16            (uint32_t) (7 << 11)                                    /* APB high speed prescaler - HCLK/16 */
 #define RCC_CFGR_RTCPRE_M               (uint32_t) (0x1F << 16)                                 /* HSE division factor for RTC clock mask */
 #define RCC_CFGR_RTCPRE(n)              (uint32_t) (n << 16)                                    /* HSE division factor for RTC clock */
 

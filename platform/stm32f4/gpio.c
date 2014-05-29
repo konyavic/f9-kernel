@@ -65,6 +65,7 @@ inline static void gpio_afr(uint8_t port, uint8_t pin, uint8_t func)
 
 void gpio_config(struct gpio_cfg *cfg)
 {
+#if 0
 	uint8_t port, pin, cfg_data;
 
 	port = cfg->port;
@@ -96,6 +97,13 @@ void gpio_config(struct gpio_cfg *cfg)
 	/* Speed */
 	cfg_data = cfg->speed;
 	gpio_ospeedr(port, pin, cfg_data);
+#else
+   	/* PA9 */
+	uint8_t port;
+	port = cfg->port;
+	*RCC_APB2ENR |= (1 << 2);
+	*(unsigned int *)(GPIO_BASE(port) + 0x00) = 0xBB00;
+#endif
 }
 
 void gpio_config_output(uint8_t port, uint8_t pin, uint8_t pupd, uint8_t speed)
