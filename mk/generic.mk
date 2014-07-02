@@ -66,6 +66,13 @@ $(out)/f9_nosym.elf: $(objs)
 $(out)/user/%.o:user/%.c
 	$(call quiet,c_to_o_user,CC     )
 
+$(out)/user/%.dats.c: user/%.dats
+	$(ATS) -o $@ -d $<
+
+$(out)/user/%.dats.o: $(out)/user/%.dats.c
+	$(CC) -E -o $(patsubst %.o,%.i,$@) $(CFLAGS_ATS) -I${PATSHOME} -I${PATSHOME}/ccomp/runtime $<
+	$(CC) -c -o $@ $(CFLAGS_ATS) -I${PATSHOME} -I${PATSHOME}/ccomp/runtime $<
+
 $(out)/%.o:%.c
 	$(call quiet,c_to_o,CC     )
 

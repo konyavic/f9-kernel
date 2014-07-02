@@ -48,8 +48,15 @@ CFLAGS = \
 	-std=gnu99 -isystem \
 	-nostdlib -ffreestanding \
 	$(CPPFLAGS) $(CFLAGS_CPU) $(CFLAGS_OPT) $(CFLAGS_DEBUG) $(CFLAGS_WARN) $(CFLAGS_y) $(CFLAGS_MISC_DEFINE)
+CFLAGS_ATS = \
+	-std=gnu99 -isystem \
+	-nostdlib -ffreestanding \
+	-D_ATS_CCOMP_PRELUDE_NONE \
+	$(CPPFLAGS) $(CFLAGS_CPU) $(CFLAGS_OPT) $(CFLAGS_DEBUG) $(CFLAGS_y) $(CFLAGS_MISC_DEFINE)
 
 LDFLAGS = \
 	--gc-sections
 
 LIBGCC = $(shell $(CC) -print-libgcc-file-name)
+
+ATS = patsopt

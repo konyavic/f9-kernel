@@ -2,5 +2,6 @@
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
 
-user-apps-dirs = \
-	hello_ats
+user-apps-hello_ats-y = \
+	main.o \
+	hello.dats.o
