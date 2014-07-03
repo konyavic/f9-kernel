@@ -6,8 +6,8 @@
 
 int __hello(void);
 
-void hello_hello(void) {
-    printf("hello from ats!\n");
+int ats_puts(char *msg) {
+    return printf(msg);
 }
 
 static void __USER_TEXT __hello_ats(user_struct *user)
